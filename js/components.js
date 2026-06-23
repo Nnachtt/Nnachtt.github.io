@@ -58,10 +58,8 @@ const FOOTER_HTML = `
     </div>
 </footer>`;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const navEl = document.getElementById('navbar-placeholder');
-    if (navEl) navEl.outerHTML = NAVBAR_HTML;
+const navEl = document.getElementById('navbar-placeholder');
+if (navEl) navEl.outerHTML = NAVBAR_HTML;
 
-    const footerEl = document.getElementById('footer-placeholder');
-    if (footerEl) footerEl.outerHTML = FOOTER_HTML;
-});
+const footerEl = document.getElementById('footer-placeholder');
+if (footerEl) footerEl.outerHTML = FOOTER_HTML;
