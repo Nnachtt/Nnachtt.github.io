@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PPDB Online SMA Kartika Nusantara - Penerimaan Peserta Didik Baru">
+    <meta name="keywords" content="PPDB, pendaftaran, sekolah, SMA Kartika">
+    <title>PPDB Online - SMA Kartika Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .ppdb-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+        .ppdb-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .ppdb-header h1 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        .ppdb-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h3 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0ea5e9;
+            padding-bottom: 10px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1f2937;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .ppdb-container {
+                margin-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" aria-label="Navigasi utama">
+        <div class="container nav-container">
+            <a href="/" class="nav-logo" title="Beranda SMA Kartika Nusantara">
+                <i class="fas fa-school" aria-hidden="true"></i>
+                <span>SMA Kartika Nusantara</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navMenu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">Beranda</a></li>
+                <li><a href="index.html#about" class="nav-link">Tentang</a></li>
+                <li><a href="index.html#programs" class="nav-link">Program</a></li>
+                <li><a href="index.html#facilities" class="nav-link">Fasilitas</a></li>
+                <li><a href="index.html#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="ppdb-container">
+        <div class="ppdb-header">
+            <h1>PPDB Online</h1>
+            <p>Penerimaan Peserta Didik Baru SMA Kartika Nusantara Tahun 2026</p>
+        </div>
+
+        <div class="ppdb-form">
+            <form id="ppdbForm" novalidate>
+                <!-- Data Pribadi -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user" aria-hidden="true"></i> Data Pribadi</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullname">Nama Lengkap <span>*</span></label>
+                            <input type="text" id="fullname" name="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nisn">NISN <span>*</span></label>
+                            <input type="text" id="nisn" name="nisn" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Jenis Kelamin <span>*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="laki-laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Tanggal Lahir <span>*</span></label>
+                            <input type="date" id="birthdate" name="birthdate" required>
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="birthplace">Tempat Lahir <span>*</span></label>
+                            <input type="text" id="birthplace" name="birthplace" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alamat -->
+                <div class="form-section">
+                    <h3><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Alamat</h3>
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="address">Alamat Lengkap <span>*</span></label>
+                            <textarea id="address" name="address" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="province">Provinsi <span>*</span></label>
+                            <input type="text" id="province" name="province" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Kota/Kabupaten <span>*</span></label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontak -->
+                <div class="form-section">
+                    <h3><i class="fas fa-phone" aria-hidden="true"></i> Kontak</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">No. Telepon <span>*</span></label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email <span>*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilihan Program -->
+                <div class="form-section">
+                    <h3><i class="fas fa-graduation-cap" aria-hidden="true"></i> Pilihan Program</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="program">Program Pilihan <span>*</span></label>
+                            <select id="program" name="program" required>
+                                <option value="">Pilih Program</option>
+                                <option value="ipa">IPA</option>
+                                <option value="ips">IPS</option>
+                                <option value="rpl">Rekayasa Perangkat Lunak</option>
+                                <option value="bahasa">Program Bahasa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Submit -->
+                <button type="submit" class="submit-btn">Daftar Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" aria-label="Footer situs">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3><i class="fas fa-school" aria-hidden="true"></i> SMA Kartika Nusantara</h3>
+                <p>Membentuk generasi penerus bangsa yang cerdas, berkarakter, dan siap menghadapi tantangan global.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SMA Kartika Nusantara. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+    <script>
+        const ppdbForm = document.getElementById('ppdbForm');
+        if (ppdbForm) {
+            ppdbForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Terima kasih telah mendaftar! Kami akan menghubungi Anda segera.');
+                ppdbForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
