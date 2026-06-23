@@ -241,14 +241,40 @@
 
     <script src="js/script.js" defer></script>
     <script>
-        const ppdbForm = document.getElementById('ppdbForm');
-        if (ppdbForm) {
-            ppdbForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Terima kasih telah mendaftar! Kami akan menghubungi Anda segera.');
-                ppdbForm.reset();
-            });
-        }
-    </script>
+const ppdbForm = document.getElementById('ppdbForm');
+const successMsg = document.createElement('div');
+successMsg.className = 'ppdb-success';
+successMsg.innerHTML = `
+    <i class="fas fa-check-circle"></i>
+    <h3>Pendaftaran Berhasil!</h3>
+    <p>Terima kasih telah mendaftar. Kami akan menghubungi Anda segera melalui email/telepon.</p>
+`;
+
+if (ppdbForm) {
+    ppdbForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const required = ppdbForm.querySelectorAll('[required]');
+        let valid = true;
+        required.forEach(field => {
+            if (!field.value.trim()) {
+                field.style.borderColor = '#dc2626';
+                valid = false;
+            } else {
+                field.style.borderColor = '';
+            }
+        });
+        if (!valid) return;
+
+        ppdbForm.style.display = 'none';
+        ppdbForm.parentNode.insertBefore(successMsg, ppdbForm);
+    });
+
+    ppdbForm.querySelectorAll('input, select, textarea').forEach(field => {
+        field.addEventListener('input', () => field.style.borderColor = '');
+        field.addEventListener('change', () => field.style.borderColor = '');
+    });
+}
+</script>
 </body>
 </html>
