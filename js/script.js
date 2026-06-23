@@ -1,15 +1,29 @@
+// Throttle function for performance optimization
+function throttle(fn, delay) {
+    let lastCall = 0;
+    return (...args) => {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            fn(...args);
+        }
+    };
+}
+
 // Navbar toggle
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
 navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+    const isOpen = navMenu.classList.toggle('active');
+    navToggle.setAttribute('aria-expanded', isOpen);
 });
 
 // Close menu on link click
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', false);
     });
 });
 
@@ -30,27 +44,34 @@ function updateActiveLink() {
     });
 }
 
-window.addEventListener('scroll', updateActiveLink);
-
 // Navbar shadow on scroll
 const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
+const throttledScroll = throttle(() => {
+    updateActiveLink();
     navbar.classList.toggle('scrolled', window.scrollY > 50);
-});
+}, 100);
 
-// Counter animation
+window.addEventListener('scroll', throttledScroll);
+
+// Counter animation - prevent multiple triggers
+let countersAnimated = false;
+
 function animateCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+
     const counters = document.querySelectorAll('.stat-number');
     counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'));
+        let current = 0;
+        const increment = Math.ceil(target / 60);
+        
         const updateCounter = () => {
-            const current = parseInt(counter.innerText);
-            const increment = Math.ceil(target / 60);
+            current = Math.min(current + increment, target);
+            counter.innerText = current === target ? target + '+' : current;
+            
             if (current < target) {
-                counter.innerText = Math.min(current + increment, target);
                 requestAnimationFrame(updateCounter);
-            } else {
-                counter.innerText = target + '+';
             }
         };
         updateCounter();
@@ -116,11 +137,76 @@ if (container) {
     });
 }
 
-// Contact form
+// Contact form validation
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function clearFormError(input) {
+    const errorMsg = input.parentElement.querySelector('.error-message');
+    if (errorMsg) {
+        errorMsg.textContent = '';
+        input.classList.remove('input-error');
+    }
+}
+
+function showFormError(input, message) {
+    const errorMsg = input.parentElement.querySelector('.error-message');
+    if (errorMsg) {
+        errorMsg.textContent = message;
+        input.classList.add('input-error');
+    }
+}
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    // Clear errors on input
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => clearFormError(input));
+        input.addEventListener('input', () => clearFormError(input));
+    });
+
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        const name = contactForm.querySelector('#name');
+        const email = contactForm.querySelector('#email');
+        const subject = contactForm.querySelector('#subject');
+        const message = contactForm.querySelector('#message');
+        
+        let isValid = true;
+
+        // Validate name
+        if (!name.value.trim()) {
+            showFormError(name, 'Nama lengkap harus diisi');
+            isValid = false;
+        }
+
+        // Validate email
+        if (!email.value.trim()) {
+            showFormError(email, 'Email harus diisi');
+            isValid = false;
+        } else if (!validateEmail(email.value)) {
+            showFormError(email, 'Format email tidak valid');
+            isValid = false;
+        }
+
+        // Validate subject
+        if (!subject.value.trim()) {
+            showFormError(subject, 'Subjek harus diisi');
+            isValid = false;
+        }
+
+        // Validate message
+        if (!message.value.trim()) {
+            showFormError(message, 'Pesan harus diisi');
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
         const btn = contactForm.querySelector('.btn-submit');
         const originalText = btn.textContent;
         btn.textContent = 'Mengirim...';
@@ -130,6 +216,9 @@ if (contactForm) {
             btn.textContent = 'Pesan Terkirim!';
             btn.style.background = '#10b981';
             contactForm.reset();
+
+            // Clear any error states
+            inputs.forEach(input => clearFormError(input));
 
             setTimeout(() => {
                 btn.textContent = originalText;
@@ -159,3 +248,22 @@ revealElements.forEach(el => {
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     revealObserver.observe(el);
 });
+
+// Back to top button
+const backToTopBtn = document.getElementById('backToTopBtn');
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
