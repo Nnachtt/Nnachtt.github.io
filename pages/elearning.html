@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Platform E-Learning SMA Kartika Nusantara">
+    <meta name="keywords" content="e-learning, kelas online, pendidikan">
+    <title>E-Learning - SMA Kartika Nusantara</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .elearning-container {
+            max-width: 1200px;
+            margin: 80px auto 50px;
+            padding: 0 20px;
+        }
+        .elearning-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .elearning-header h1 {
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .course-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+            color: white;
+            text-align: center;
+        }
+        .course-header i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .course-header h3 {
+            margin: 0;
+        }
+        .course-body {
+            padding: 20px;
+        }
+        .course-body p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #1e40af;
+        }
+        .course-btn {
+            display: block;
+            text-align: center;
+            background: #0ea5e9;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+        .course-btn:hover {
+            background: #0284c7;
+        }
+        @media (max-width: 768px) {
+            .elearning-header h1 {
+                font-size: 1.8rem;
+            }
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <div class="elearning-container">
+        <div class="elearning-header">
+            <h1>Platform E-Learning</h1>
+            <p>Belajar Kapan Saja, Dimana Saja dengan Materi Berkualitas Tinggi</p>
+        </div>
+
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-flask"></i>
+                    <h3>Fisika</h3>
+                </div>
+                <div class="course-body">
+                    <p>Pelajari konsep-konsep fisika dari dasar hingga tingkat lanjut dengan laboratorium virtual.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 25 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 150 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-beaker"></i>
+                    <h3>Kimia</h3>
+                </div>
+                <div class="course-body">
+                    <p>Mengenal reaksi kimia, persamaan reaksi, dan aplikasinya dalam kehidupan sehari-hari.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 30 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 180 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-dna"></i>
+                    <h3>Biologi</h3>
+                </div>
+                <div class="course-body">
+                    <p>Pelajari kehidupan dari tingkat sel hingga ekosistem dengan visualisasi 3D interaktif.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 28 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 165 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Bahasa Indonesia</h3>
+                </div>
+                <div class="course-body">
+                    <p>Tingkatkan kemampuan membaca, menulis, dan berpresentasi dalam bahasa Indonesia.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 22 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 200 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-globe"></i>
+                    <h3>Bahasa Inggris</h3>
+                </div>
+                <div class="course-body">
+                    <p>Kuasai grammar, vocabulary, dan conversational English dengan native speaker instructor.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 35 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 220 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-code"></i>
+                    <h3>Pemrograman Web</h3>
+                </div>
+                <div class="course-body">
+                    <p>Belajar HTML, CSS, JavaScript dan framework modern untuk membuat website interaktif.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 45 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 190 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Matematika</h3>
+                </div>
+                <div class="course-body">
+                    <p>Penguasaan aljabar, geometri, dan kalkulus dengan pendekatan problem-solving interaktif.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 40 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 210 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <i class="fas fa-map"></i>
+                    <h3>Geografi</h3>
+                </div>
+                <div class="course-body">
+                    <p>Jelajahi bumi dengan peta interaktif, data real-time, dan studi kasus geografi modern.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-video"></i> 20 Video</span>
+                        <span><i class="fas fa-user-graduate"></i> 140 Siswa</span>
+                    </div>
+                    <a href="#" class="course-btn">Masuk Kelas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../js/components.js" defer></script>
+    <script src="../js/script.js" defer></script>
+</body>
+</html>
